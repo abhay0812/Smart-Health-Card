@@ -1,0 +1,160 @@
+doctype html
+head
+  title Profile
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style
+    include ../public/style/PatientPersonalDetails.css
+    include ../public/style/style.css
+body 
+  include links.pug
+  br
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand(href='#')
+      i#heartbeaticon.fa.fa-heartbeat.icon
+      |  Smart Health Card
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item 
+          a.nav-link(href='/patient/information')
+            | Profile
+        li.nav-item
+          a.nav-link(href='/healthcard') Health Card
+        li.nav-item
+          a.nav-link(href='#appoint' data-toggle='modal') Appointment 
+        li.nav-item
+          a.nav-link(href='/patient/myappoint' ) My Appoint 
+        li.nav-item
+          a.nav-link(href='#feedback' data-toggle='modal') Feedback
+        li.nav-item
+          a.nav-link(href='/') Log out
+      li#usrname
+        .usericon.fa.fa-user.icon
+        |#{record.firstname} #{record.lastname}
+  // background
+  .DoctorDetailForm
+    h1  Patient Details 
+  .bg-agile
+    .book-appointment
+      h2 Patient Personal Details
+      form(action='')
+        .left-agileits-w3layouts.same
+          .gaps
+            p Name
+            p.det #{record.firstname} #{record.middlename}  #{record.lastname} 
+          .gaps
+            p Phone Number
+            p.det #{record.mobileno}
+          .gaps
+            p#eid Email
+            p.det #{record.email} 
+          .gaps
+            p Aadhar Number
+            p.det #{record.aadharcard} 
+        .right-agileinfo.same
+          .gaps
+            p Date of Birth
+            p.det #{record.dob} 
+          .gaps
+            p Blood Group
+            p.det #{record.bloodgroup}
+          .gaps
+            p Gender
+            p.det #{record.gender}
+          .gaps
+            p Address 
+            p.det #{record.address}
+        .clear
+  br
+  br
+  br
+  br
+  .container-xl
+    .table-responsive
+      .table-wrapper
+        .table-title
+          .row
+            .col-sm-6
+              h2 Health Report
+            .col-sm-6
+        table.table.table-striped.table-hover
+          thead
+            tr(style='font-weight:bold')
+              th
+              th Index
+              th Date &amp; Time
+              th Disease/Alergy
+              th Medicine
+              th Doctor Name
+          tbody
+            -for (var i = 0; i < len; ++i) 
+              tr
+                th
+                th #{i+1}
+                td #{hdata.meta[i].dt}
+                td #{hdata.meta[i].disease}
+                td #{hdata.meta[i].medicine}
+                td #{hdata.meta[i].doctor}
+                td
+        .clearfix
+          .hint-text
+            | Showing 
+            b #{len}
+            |  out of 
+            b #{len}
+            |  entries
+          ul.pagination
+            li.page-item
+              a.page-link(href='#') 1
+  br
+  br
+  br
+  #appoint.modal.fade
+    .modal-dialog
+      .modal-content
+        form(action='/patient/appointment' method='post' )
+          .modal-header
+            h4.modal-title Book Appointment
+            button.close(type='button' data-dismiss='modal' aria-hidden='true') &times;
+          .modal-body
+            .form-group
+              label Patient Name
+              input.form-control(type='text' name='name' required='')
+            .form-group
+              label Age
+              input.form-control(type='number' name='age' required='' )
+            .form-group
+              label Date 
+              input.form-control(type='date' name='date' required='')
+            .form-group
+              label City
+              input.form-control(type='text' name='city' required='')
+            .form-group
+              label Contact Number 
+              input.form-control(type='tel' name='contact' required='' pattern="[0-9]{10}")
+          .modal-footer
+            input.btn.btn-default(type='button' data-dismiss='modal' value='Cancel')
+            input.btn.btn-success(type='submit' value='Next' )
+  #feedback.modal.fade
+    .modal-dialog
+      .modal-content
+        form(action='/patient/feedback' method='post' )
+          .modal-header
+            h4.modal-title Enter Detail
+            button.close(type='button' data-dismiss='modal' aria-hidden='true') &times;
+          .modal-body
+            .form-group
+              label City
+              input.form-control(type='text' name='city' required='')
+          .modal-footer
+            input.btn.btn-success(type='submit' value='Next' )
+script.
+  function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+  x.type = "text";
+  } else {
+  x.type = "password";
+  }
+  }

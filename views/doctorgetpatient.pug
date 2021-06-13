@@ -1,0 +1,204 @@
+doctype html
+head
+  title Doctor/patient
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+style
+  include ../public/style/PatientPersonalDetails.css
+  include ../public/style/style.css
+script.
+  $(document).ready(function(){
+  // Activate tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+  // Select/Deselect checkboxes
+  var checkbox = $('table tbody input[type="checkbox"]');
+  $("#selectAll").click(function(){
+  if(this.checked){
+  checkbox.each(function(){
+  this.checked = true;
+  });
+  } else{
+  checkbox.each(function(){
+  this.checked = false;
+  });
+  }
+  });
+  checkbox.click(function(){
+  if(!this.checked){
+  $("#selectAll").prop("checked", false);
+  }
+  });
+  });
+  
+body 
+  include links.pug
+  br
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand(href='#')
+      i#heartbeaticon.fa.fa-heartbeat.icon
+      |  Smart Health Card
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item 
+          a.nav-link(href='/')
+            | Home 
+            span.sr-only (current)
+        li.nav-item
+          a.nav-link(href='/healthcard') Health card 
+        li.nav-item
+          a.nav-link(href='/PatientRegister') Patient register
+        li.nav-item
+          a.nav-link(href='/') About
+        li.nav-item
+          a.nav-link(href='/') Log Out
+    li#usrname
+      i.usericon.fa.fa-user.icon
+      |#{record.firstname} #{record.lastname}
+  br
+  // background
+  .DoctorDetailForm
+    h1  Patient Details 
+  .bg-agile
+    .book-appointment
+      h2 Patient Personal Details
+      form(action='')
+        .left-agileits-w3layouts.same
+          .gaps
+            p Name
+            p.det #{record.firstname} #{record.middlename}  #{record.lastname}
+          .gaps
+            p Phone Number
+            p.det #{record.mobileno}
+          .gaps
+            p Email
+            p.det #{record.email} 
+          .gaps
+            p Aadhar Number
+            p.det #{record.aadharcard} 
+        .right-agileinfo.same
+          .gaps
+            p Date of Birth
+            p.det #{record.dob} 
+          .gaps
+            p Blood Group
+            p.det #{record.bloodgroup}
+          .gaps
+            p Gender
+            p.det #{record.gender}
+          .gaps
+            p Address 
+            p.det Surat,Gujarat 
+        .clear
+        // <input type="submit" value="Make an appointment">
+  br
+  br
+  br
+  br
+  .container-xl
+  .table-responsive
+    .table-wrapper
+      .table-title
+        .row
+          .col-sm-6
+            h2
+              | Health  
+              b Report
+          .col-sm-6
+            a.btn.btn-success(href='#adddata' data-toggle='modal' )
+              i.material-icons &#xE147;
+              span Add New data
+            a.btn.btn-danger(href='#deleteEmployeeModal' data-toggle='modal')
+              i.material-icons &#xE15C;
+              span Delete
+      table.table.table-striped.table-hover
+        thead
+          tr(style='font-weight:bold')
+            th
+              span.custom-checkbox
+                input#selectAll(type='checkbox')
+                label(for='selectAll')
+            th Date
+            th Disease/Alergy
+            th Medicine
+            th Doctor 
+            th Actions
+        tbody
+         -for (var i = 0; i < len; ++i) 
+           tr
+            td
+              span.custom-checkbox
+                input#checkbox1(type='checkbox' name='options[]' value='1')
+                label(for='checkbox1')
+            td #{hdata.meta[i].dt}
+            td #{hdata.meta[i].disease}
+            td #{hdata.meta[i].medicine}
+            td #{hdata.meta[i].doctor}
+            td
+              a.edit(href='#editEmployeeModal' data-toggle='modal')
+                i.material-icons(data-toggle='tooltip' title='Edit') &#xE254;
+              //- a.delete(href='#deleteEmployeeModal' data-toggle='modal')
+              //-   i.material-icons(data-toggle='tooltip' title='Delete') &#xE872;
+      .clearfix
+        .hint-text
+          | Showing 
+          b #{len}
+          |  out of 
+          b #{len}
+          |  entries
+        ul.pagination
+          li.page-item.disabled
+            //- a(href='#') Previous
+          li.page-item
+            a.page-link(href='#') 1
+          li.page-item
+        //-     a.page-link(href='#') 2
+        //-   li.page-item.active
+        //-     a.page-link(href='#') 3
+        //-   li.page-item
+        //-     a.page-link(href='#') 4
+        //-   li.page-item
+        //-     a.page-link(href='#') 5
+        //-   li.page-item
+        //-     a.page-link(href='#') Next
+        //- addEmployeeModal
+#adddata.modal.fade
+  .modal-dialog
+    .modal-content
+      form(action='/adddata' method='post' )
+        .modal-header
+          h4.modal-title Add Record
+          button.close(type='button' data-dismiss='modal' aria-hidden='true') &times;
+        .modal-body
+          .form-group
+            label confirm Username
+            input.form-control(type='text' name='username' required='')
+          .form-group
+            label Date
+            input.form-control(type='date' name='dt' required='')
+          .form-group
+            label Disease 
+            input.form-control(type='text' name='disease' required='')
+          .form-group
+            label Medicine
+            textarea.form-control(type='text' name='medicine' required='')
+          .form-group
+            label Doctor 
+            input.form-control(type='text' name='doctor' required='')
+        .modal-footer
+          input.btn.btn-default(type='button' data-dismiss='modal' value='Cancel')
+          input.btn.btn-success(type='submit' value='Add' )
+#deleteEmployeeModal.modal.fade
+  .modal-dialog
+    .modal-content
+      form
+        .modal-header
+          h4.modal-title Delete Employee
+          button.close(type='button' data-dismiss='modal' aria-hidden='true') &times;
+        .modal-body
+          p Are you sure you want to delete these Records?
+          p.text-warning
+            small This action cannot be undone.
+        .modal-footer
+          input.btn.btn-default(type='button' data-dismiss='modal' value='Cancel')
+          input.btn.btn-danger(type='submit' value='Delete')

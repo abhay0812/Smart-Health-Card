@@ -1,0 +1,140 @@
+.navbar{
+    border-radius: 30px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: black !important;
+  }
+
+  .navbar-brand{
+    font-size: 25px;
+    color: white !important;
+  }
+
+  .nav-item{
+    font-size: 20px;
+    margin-left: 0.5em;
+  }
+
+  .nav-link{
+    color: white !important;
+  }
+
+  .nav-link:hover{
+    background-color: blueviolet;
+  }
+
+  .nav-item:active{
+    color: blueviolet !important;
+  }
+
+  #heartbeaticon{
+    color: rgb(88, 88, 206) !important;
+    padding-right: 0.2em;
+  }
+
+  .navbar-toggler{
+      background-color: white;
+  }
+
+  .carousel-caption h1{
+    font-size: 60px;
+    color: rgb(240, 201, 94);
+  }
+
+  #about{
+    color: #555555;
+    padding: 48px 0px;
+  }
+
+  .sub-titlehny{
+    color: #f72585;
+    font-size: 25px;
+    margin: 0px 0px 12px;
+  }
+
+  .hny-title{
+    font-size: 40px;
+    color: #232323;
+    margin: 0px 0px 20px;
+  }
+
+  .img-fluid{
+    border-radius: 8px;
+  }
+
+  #btn1{
+    font-size: 18px;
+    font-weight: 650;
+    background-color: #3A0CA3;
+    margin: 24px 0px 0px;
+    padding: 12px 36px;
+    border-radius: 10px;
+  }
+
+  #btn1:hover{
+    background-color: #2d068a;
+  }
+
+  .hnynumber{
+    color: #3A0CA3;
+    font-size: 40px;
+  }
+
+  .link-hny{
+    font-size: 35px;
+    color: #232323;
+  }
+
+  .link-hny:hover{
+    font-size: 35px;
+    color: #232323;
+  }
+
+  #background{
+    background-color: rgb(206, 194, 194);
+  }
+
+  #btn2{
+    font-size: 18px;
+    font-weight: 650;
+    background-color: #3A0CA3;
+    margin: 24px 0px 0px;
+    padding: 12px 36px;
+    border-radius: 10px;
+  }
+
+  #btn2:hover{
+    background-color: #2d068a;
+  }
+
+  #footer-bg{
+    background-color: black;
+    color: white;
+  }
+
+  #logo{
+    font-size: 34.125px;
+    color: rgb(39, 39, 211);
+  }
+
+  #links{
+    font-size: 25px;
+  }
+
+  #services{
+    font-size: 25px;
+    padding-left: 1em;
+  }
+
+  #information{
+    font-size: 25px;
+  }
+
+  #copyright{
+    background-color: black;
+    color: white;
+  }
+
+  .carousel-caption h1{
+    top: -10em;
+  }
